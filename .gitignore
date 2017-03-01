@@ -1,0 +1,5 @@
+*.pyc
+secrets.yml
+static/firmware
+.vagrant
+.htpasswd

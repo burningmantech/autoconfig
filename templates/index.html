@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+{% block title %}PlayaWiFi{% endblock %}
+
+{% block content %}
+<!-- your ip is {{ session['ip']|default('unknown') }} -->
+
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="page-header" class="text-center">
+      <h2><p class="text-center">Please provide some information:</p></h2>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+  <div class="well well-lg">
+    <form id="reg" role="form" class="form-horizontal" action="_reg" method="post">
+
+      <fieldset>
+
+        <div class="form-group form-group-lg">
+          <label for="hour" class="control-label col-sm-2">Hour</label>
+          <div class="tooltips col-sm-10" title="Please select the hour of your camps location">
+            <select id="hour" name="hour" class="form-control">
+              {% for hour in range(2,11) %}
+                <option value="{{ hour }}">{{ hour }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group form-group-lg">
+          <label for="minute" class="control-label col-sm-2">Minute</label>
+          <div class="tooltips col-sm-10" title="Please select the minute of your camps location">
+            <select id="minute" name="minute" class="form-control">
+              {% for min in range(00,60) %}
+                <option value="{{ min }}">{{ min }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+      
+        <div class="form-group form-group-lg">
+          <label for="radial" class="control-label col-sm-2">Radial</label>
+          <div class="tooltips col-sm-10" title="Please select the radial of your camps location">
+            <select id="radial" name="radial" class="form-control">
+              {% for radial in ['A','B','C','D','E','F','G','H','I','J','K','L'] %}
+                <option value="{{ radial }}">{{ radial }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div> 
+        
+        <div class="form-group form-group-lg">
+          <label for="camp" class="control-label col-sm-2">Camp</label>
+          <div class="tooltips col-sm-10" title="The name of your camp">
+            <input required="true" type="text" class="form-control" name="camp" id="camp" placeholder="Camp name">
+          </div>
+        </div>
+
+        <div class="form-group form-group-lg">
+          <label for="mac" class="control-label col-sm-2">MAC</label>
+          <div class="tooltips col-sm-10" title="The MAC address of your radio">
+            <input required="true" type="text" class="form-control" id="mac" name="mac" placeholder="{{ session['mac']|default('The MAC address of your device') }}" value="{{ session['mac']|default('') }}">
+          </div>
+        </div>
+
+        <div class="form-group form-group-lg">
+          <label for="radio" class="control-label col-sm-2">Radio</label>
+          <div class="tooltips col-sm-10" title="Please select the type of board your radio has">
+            <select id="radio" name="radio" class="form-control">
+              <option value="XM">XM</option>
+              <option value="XW">XW</option>
+            </select>
+          </div>
+        </div> 
+
+        <div class="form-group form-group-lg">
+          <label for="contact" class="control-label col-sm-2">Contact</label>
+          <div class="tooltips col-sm-10" title="An contact name for your camp">
+            <input required="true" type="contact" class="form-control" id="contact" name="contact" placeholder="Contact name">
+          </div>
+        </div>
+
+        <div class="form-group form-group-lg">
+          <label for="email" class="control-label col-sm-2">Email</label>
+          <div class="tooltips col-sm-10" title="An email contact for your camp">
+            <input required="true" type="email" class="form-control" id="email" name="email" placeholder="Contact email">
+          </div>
+        </div>
+        
+        <div class="btn-group btn-group-justified">
+          <div class="btn-group">
+            <button type="submit" class="btn btn-primary" id="submitBtn">Program my radio!</button>
+          </div>
+
+
+  </div>
+  <BR><BR>
+  <B>
+    <CENTER> Once you hit submit, wait patiently!  </CENTER> 
+  </B>
+  <BR><BR>
+  <I> This is a <b> SLOW </b> process, as it involves updating the
+      firmware and applying a new configuration. If you stop it part
+      way through the firmware on the radio could be left in a non bootable
+      configuration <B> AND </b> you only have one try to get this
+      to work.
+      <BR><BR>
+      Please be patient!
+  </I>
+
+
+
+      </fieldset>
+
+    </form>
+  </div>
+  </div> 
+</div>
+<div class="row">
+  <p><p>
+</div>
+
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+{% with messages = get_flashed_messages(category_filter=["error"]) %}
+  {% if messages %}
+    <div class="alert alert-danger" role="alert">
+        {% for message in messages %}
+          {{ message }}<br>
+        {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+{% with messages = get_flashed_messages(category_filter=["info"]) %}
+  {% if messages %}
+    <div class="alert alert-success" role="alert">
+        {% for message in messages %}
+          {{ message }}<br>
+        {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+  </div>
+</div>
+
+{% endblock %}
