@@ -1,7 +1,6 @@
+**Notes for running on mac**
+
 ```
-brew install mysql
-pip install flask
-pip install MySQL-python
-pip install paramiko
-brew install libdnet
+brew install mysql libdnet
+pip install flask MySQL-python paramiko
 ```

@@ -24,7 +24,7 @@ It is designed to work as follows:
   guidelines. ( 2.4 Ghz Only, low power, open network w/ camp name in SSID)
   
 
-run for dev with:
+Run for local dev with:
 
 ```
 export FLASK_APP=./server/app.py
@@ -32,9 +32,11 @@ flask run
 ```
 Use a wsgi container for production. See contrib/autoconfig.wsgi for an apache2 example
 
-From a default-ish debian 8 install:
+From a default-ish Debian 8 install:
 
+```
 apt-get install -y unzip python-flask python-yaml python-dumbnet python-paramiko python-MySQLdb mysql-server libdumbnet1
+```
 
 Note that Debian renamed libdnet to libdumbnet. Install as appropriate to your distribution
 
@@ -44,15 +46,18 @@ mysql -u root -proot playawifi < schema.sql
 ```
 
 Example get device strings:
+
 ```
 deviceName=PowerBeam M5 300,deviceId=24:A4:3C:F2:51:25,firmwareVersion=XW.ar934x.v6.0-beta10.29223.160601.1516,platform=PowerBeam M5,deviceIp=192.168.1.20
-
 deviceName=NanoBridge M5,deviceId=00:27:22:50:03:24,firmwareVersion=XM.ar7240.v5.6.8.29413.160715.1613,platform=NanoBridge M5,deviceIp=192.168.1.20
-
 deviceName=NanoBeam 5AC 19,deviceId=80:2A:A8:24:D1:51,firmwareVersion=XC.qca955x.v8.0-beta15-cs.31340.160729.1158,platform=NanoBeam 5AC 19,deviceIp=192.168.1.20
+```
 
-PowerBeam M5 300 = XW.v6.0-beta10.29223.160601.1516.bin
-NanoBridge M5    = XM.v6.0-beta10.29223.160601.1527.bin
-NanoBeam 5AC 19  = XC.v8.0-beta15-cs.31340.160729.1158.bin
+Example firmwares:
+
+```
+PowerBeam M5 300 = XW.v6.0.30097.161219.1705.bin
+NanoBridge M5    = XM.v6.0.30097.161219.1716.bin
+NanoBeam 5AC 19  = XC.v8.0.1.32631.170202.1626.bin
 ```
 

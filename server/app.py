@@ -174,11 +174,22 @@ def reg():
     except: 
       pass
     cursor.execute(v_ass)
+
     session['v_id'] = cursor.fetchone()[0]
+    app.logger.debug('v_id: %s' % session['v_id'])    
+
     session['v_ip'] = str(int(session['v_id'])-999)
+    app.logger.debug('v_ip: %s' % session['v_ip'])    
+
     session['v_ip_low'] = str(int(session['v_ip'])%256)
+    app.logger.debug('v_ip_low: %s' % session['v_ip_low'])  
+
     session['v_ip_high'] = str(int(session['v_ip'])/256)
+    app.logger.debug('v_ip_high: %s' % session['v_ip_high'])
+
     session['v_ip_high2'] = str(101+(int(session['v_ip'])/256))
+    app.logger.debug('v_ip_high2: %s' % session['v_ip_high2'])
+
     print "Set v_ip to %s" % session['v_ip']
   except MySQLdb.Error as myerr:
     app.logger.debug('mysql error: %s' % myerr)

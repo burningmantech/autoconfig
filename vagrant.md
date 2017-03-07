@@ -1,3 +1,5 @@
+## Sample vagrant test setup
+
 The included vagrantfile will create 2 hosts, a server and a client.
 
 The server will run the jailer app via supervisor and the web app via apache and mod_wsgi 
@@ -21,5 +23,7 @@ vagrant ssh server
 
 vagrant destroy -f
 ```
+
+Notes:
 
 dnsmasq is not started
